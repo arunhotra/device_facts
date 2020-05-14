@@ -1,5 +1,5 @@
 
-# Quickly obtain bigip_device_facts from a host.
+# Quickly obtain bigip_device_facts from a BIG-IP.
 
 ## modify host file 
 
