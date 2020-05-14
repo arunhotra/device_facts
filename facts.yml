@@ -1,0 +1,40 @@
+---
+- name: GRAB F5 FACTS
+  hosts: all
+  connection: local
+  gather_facts: no
+
+  vars_prompt:
+    - name: ansible_user
+      prompt: "What is your username?"
+      private: no
+
+    - name: ansible_ssh_pass
+      prompt: "What is your password?"
+      private: yes
+
+    - name: data_entity
+      prompt: "What data do you want?"
+      private: no
+
+  tasks:
+    - name: Set a fact named 'provider' with BIG-IP login information
+      set_fact:
+        provider:
+          server: "{{ansible_host}}"
+          user: "{{ansible_user}}"
+          password: "{{ansible_ssh_pass}}"
+          server_port: 443
+          validate_certs: no
+
+    - name: COLLECT BIG-IP FACTS
+      bigip_device_info:
+        provider: "{{provider}}"
+        gather_subset:
+          - "{{data_entity}}"
+      register: device_facts
+
+    - name: Copy output to file
+      copy:
+        content: "{{ device_facts }}"
+        dest: "facts.json"
