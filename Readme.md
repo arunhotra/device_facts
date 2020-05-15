@@ -3,13 +3,9 @@
 
 ## modify host file 
 
-## build the container
+## build and run the container
 
-docker build -t facts .
-
-## run the container interactively
-
-docker run -it -v $(pwd):/ansible/playbooks facts:latest
+docker-compose run facts sh
 
 ## Once in the container, run the playbook using the following command.
 
