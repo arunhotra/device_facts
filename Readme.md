@@ -11,11 +11,13 @@ Docker
 
 ## Steps
 
+* ### clone the repo
+
 * ### modify hosts file to point to the IP of your BIG-IP
 
 * ### build and run the container
 
-``` docker-compose run facts sh ```
+``` docker-compose run facts```
 
 * ### Once in the container, run the playbook using the following command.
 
